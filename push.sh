@@ -1,4 +1,4 @@
-git reset --HARD
+git reset --hard
 git pull
 
 rm configuration/.bash_aliases

@@ -1,4 +1,4 @@
-git reset --HARD && git pull
+git reset --hard && git pull
 
 rm ~/.bash_aliases
 cp ./configuration/.bash_aliases ~/.bash_aliases 
