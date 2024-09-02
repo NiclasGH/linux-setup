@@ -27,7 +27,7 @@ as-non-root-do ssh-keygen -t ed25519
 
 as-non-root-do setxkbmap eu # TODO this doesnt work yet
 
-# Step 2 ----- Programs & Tools ----- 
+# Step 3 ----- Programs & Tools ----- 
 pacman -S --noconfirm obsidian discord flameshot # steam
 as-non-root-do yay -S --noconfirm visual-studio-code-bin 1password
 
@@ -37,8 +37,7 @@ tar -xvf toolbox.tar.gz
 TOOLBOX_DIR=$(find -name "*jetbrains*" -type d)
 as-non-root-do $TOOLBOX_DIR/jetbrains-toolbox # Execute
 
-
-# Post information
+# Step 4 ----- User needs to manually put the ssh key -----
 echo "Add the following key to: https://github.com/settings/keys to be able to continue"
 cat ~/.ssh/id_ed25519.pub
 
@@ -48,13 +47,12 @@ if [[ ! $DO_GIT_INSTALL =~ ^[Yy]$ ]] then
   exit
 fi
 
-# Setup Aliases + Functions
+# Step 5 ----- Setup Aliases + Functions -----
 as-non-root-do git clone git@github.com:NiclasGH/linux-setup.git ~/linux-setup
 as-non-root-do cd ~/linux-setup
 chmod +x pull.sh push.sh
 as-non-root-do ./pull.sh
 
-
-
+# End ----------
 echo "Finished Installation - You can delete this script now"
 echo "[1] You can install vim here: https://github.com/NiclasGH/NeoVim-Configurations"
