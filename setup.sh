@@ -52,10 +52,14 @@ as-non-root-do setxkbmap eu
 
 # Step 3 ----- Programs & Tools -----
 if [ "$DISTRO" == "arch" ]; then
-  pacman -S --noconfirm obsidian discord flameshot # steam
-  as-non-root-do yay -S --noconfirm visual-studio-code-bin 1password
+  pacman -S --noconfirm obsidian discord flameshot docker docker-compose # steam
+  as-non-root-do systemctl docker.socker
+  sudo gpasswd -a $NON_ROOT_USER docker # Allows user to run docker commands without root
+  as-non-root-do yay -S --noconfirm visual-studio-code-bin 1password spotify postman-bin docker-desktop
+
 elif [ "$DISTRO" == "debian" ]; then
   apt install -y obsidian discord flameshot codium
+  snap install spotify postman
 
   # 1Password (Debian/Ubuntu specific)
   curl -sS https://downloads.1password.com/linux/keys/1password.asc | sudo gpg --dearmor --output /usr/share/keyrings/1password-archive-keyring.gpg
@@ -65,6 +69,23 @@ elif [ "$DISTRO" == "debian" ]; then
   mkdir -p /usr/share/debsig/keyrings/AC2D62742012EA22
   curl -sS https://downloads.1password.com/linux/keys/1password.asc | sudo gpg --dearmor --output /usr/share/debsig/keyrings/AC2D62742012EA22/debsig.gpg
   apt update && apt install -y 1password
+
+  # Docker Start (C&P from official docker documentation)
+  apt-get -y install ca-certificates curl
+  install -m 0755 -d /etc/apt/keyrings
+  curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+  chmod a+r /etc/apt/keyrings/docker.asc
+
+  echo \
+    "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+    $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+    tee /etc/apt/sources.list.d/docker.list > /dev/null
+  apt-get update && apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+  wget -O docker.deb https://desktop.docker.com/linux/main/amd64/docker-desktop-amd64.deb
+  apt-get install ./docker.deb
+  rm -f docker.deb
+  # Docker End
 fi
 
 # JetBrains Toolbox
@@ -72,6 +93,7 @@ wget -O toolbox.tar.gz https://download.jetbrains.com/toolbox/jetbrains-toolbox-
 tar -xvf toolbox.tar.gz
 TOOLBOX_DIR=$(find -name "*jetbrains*" -type d)
 as-non-root-do $TOOLBOX_DIR/jetbrains-toolbox
+rm -rf $TOOLBOX_DIR/jetbrains-toolbox
 
 # Step 4 ----- User needs to manually add the SSH key -----
 echo "Add the following key to: https://github.com/settings/keys to be able to continue"
