@@ -2,17 +2,17 @@
 
 # Detect the OS distribution
 if [ -f /etc/arch-release ]; then
-  DISTRO="arch"
+	DISTRO="arch"
 elif [ -f /etc/lsb-release ]; then
-  DISTRO="debian"
+	DISTRO="debian"
 else
-  echo "Unsupported Linux distribution"
-  exit 1
+	echo "Unsupported Linux distribution"
+	exit 1
 fi
 
 if [ "$EUID" -ne 0 ]; then
-  echo "Please run as root"
-  exit 1
+	echo "Please run as root"
+	exit 1
 fi
 
 NON_ROOT_USER=$(id -un 1000)
@@ -20,14 +20,14 @@ alias as-non-root-do='runuser -u $NON_ROOT_USER -- '
 
 # Step 1 ----- Base Installations -----
 if [ "$DISTRO" == "arch" ]; then
-  pacman -Syu --noconfirm
-  pacman -S --noconfirm --needed base-devel git
+	pacman -Syu --noconfirm
+	pacman -S --noconfirm --needed base-devel git
 
   # Programming Languages
   pacman -S --noconfirm --needed jre21-openjdk
 elif [ "$DISTRO" == "debian" ]; then
-  apt update && apt upgrade -y
-  apt install -y build-essential git
+	apt update && apt upgrade -y
+	apt install -y build-essential git
 
   # Programming Languages
   apt install -y openjdk-21-jre
@@ -47,22 +47,24 @@ as-non-root-do git config --global user.email "niclas.kuerschner@outlook.com"
 echo "Generating ssh key..."
 as-non-root-do ssh-keygen -t ed25519
 
-# Keyboard Layout (This might need manual adjustment)
-as-non-root-do echo "[Layout]" >> ~/.config/kxkbrc
-as-non-root-do echo "LayoutList=eu" >> ~/.config/kxkbrc
-as-non-root-do echo "ResetOldOptions=true" >> ~/.config/kxkbrc
-as-non-root-do echo "Use=true" >> ~/.config/kxkbrc
+# Keyboard Layout on kde(This might need manual adjustment)
+if [ $DESKTOP_SESSION -eq "plasma" ]; then
+	as-non-root-do echo "[Layout]" >> ~/.config/kxkbrc
+	as-non-root-do echo "LayoutList=eu" >> ~/.config/kxkbrc
+	as-non-root-do echo "ResetOldOptions=true" >> ~/.config/kxkbrc
+	as-non-root-do echo "Use=true" >> ~/.config/kxkbrc
+fi # TODO ubuntu
 
 # Step 3 ----- Programs & Tools -----
 if [ "$DISTRO" == "arch" ]; then
-  pacman -S --noconfirm --needed obsidian discord flameshot docker docker-compose # steam
-  as-non-root-do systemctl docker.socker
-  sudo gpasswd -a $NON_ROOT_USER docker # Allows user to run docker commands without root
-  as-non-root-do yay -S --noconfirm --needed visual-studio-code-bin 1password spotify postman-bin docker-desktop
+	pacman -S --noconfirm --needed obsidian discord flameshot docker docker-compose # steam
+	as-non-root-do systemctl docker.socker
+	sudo gpasswd -a $NON_ROOT_USER docker # Allows user to run docker commands without root
+	as-non-root-do yay -S --noconfirm --needed visual-studio-code-bin 1password spotify postman-bin docker-desktop
 
 elif [ "$DISTRO" == "debian" ]; then
-  apt install -y obsidian discord flameshot codium
-  snap install spotify postman
+	apt install -y obsidian discord flameshot codium
+	snap install spotify postman
 
   # 1Password (Debian/Ubuntu specific)
   curl -sS https://downloads.1password.com/linux/keys/1password.asc | sudo gpg --dearmor --output /usr/share/keyrings/1password-archive-keyring.gpg
@@ -80,15 +82,15 @@ elif [ "$DISTRO" == "debian" ]; then
   chmod a+r /etc/apt/keyrings/docker.asc
 
   echo \
-    "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
-    $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
-    tee /etc/apt/sources.list.d/docker.list > /dev/null
-  apt-get update && apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+	  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+	  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+	  tee /etc/apt/sources.list.d/docker.list > /dev/null
+	    apt-get update && apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
-  wget -O docker.deb https://desktop.docker.com/linux/main/amd64/docker-desktop-amd64.deb
-  apt-get install ./docker.deb
-  rm -f docker.deb
-  # Docker End
+	    wget -O docker.deb https://desktop.docker.com/linux/main/amd64/docker-desktop-amd64.deb
+	    apt-get install ./docker.deb
+	    rm -f docker.deb
+	    # Docker End
 fi
 
 # JetBrains Toolbox
@@ -104,8 +106,8 @@ cat /home/$NON_ROOT_USER/.ssh/id_ed25519.pub
 
 read -n 1 -p "Confirm with Y to continue installation [Y/N]: " DO_GIT_INSTALL
 if [[ ! $DO_GIT_INSTALL =~ ^[Yy]$ ]]; then
-  echo "Finished base installation. Rest of installation was skipped"
-  exit
+	echo "Finished base installation. Rest of installation was skipped"
+	exit
 fi
 
 # Step 5 ----- Setup Aliases + Functions -----
