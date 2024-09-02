@@ -7,5 +7,6 @@ cp ~/.bash_aliases configuration/.bash_aliases
 rm configuration/.bash_functions
 cp ~/.bash_functions configuration/.bash_functions
 
+git add .
 git commit -m "Alias and Function update"
 git push
