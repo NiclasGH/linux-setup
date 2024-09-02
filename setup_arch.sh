@@ -3,43 +3,58 @@ if [ "$EUID" -ne 0 ]
   exit
 fi
 
-# Sudo installations
+NON_ROOT_USER=$(id -un 1000)
+alias as-non-root-do='runuser -u $NON_ROOT_USER -- '
+
+# Step 1 ----- Base Installations ----- 
 pacman -Syu --noconfirm
 pacman -S --noconfirm --needed base-devel git
 
 # Programming Languages
-pacman -S --noconfirm jre21-openjdk
+pacman -S --noconfirm jre21-openjdk 
+as-non-root-do curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y # Rust
 
-# Everyday programs
+# Node
+as-non-root-do curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.0/install.sh | bash
+as-non-root-do nvm install 20
+
+# Step 2 ----- Configuration
+as-non-root-do git config --global user.name "Niclas Kürschner"
+as-non-root-do git config --global user.email "niclas.kuerschner@outlook.com"
+
+echo "Generating ssh key..."
+as-non-root-do ssh-keygen -t ed25519
+
+as-non-root-do setxkbmap eu # TODO this doesnt work yet
+
+# Step 2 ----- Programs & Tools ----- 
 pacman -S --noconfirm obsidian discord flameshot # steam
+as-non-root-do yay -S --noconfirm visual-studio-code-bin 1password
 
-# Non-root tasks
-su - $(id -un 1000) # Switch to user with id 1000
-
+# JetBrains
 wget -O toolbox.tar.gz https://download.jetbrains.com/toolbox/jetbrains-toolbox-2.4.2.32922.tar.gz
 tar -xvf toolbox.tar.gz
 TOOLBOX_DIR=$(find -name "*jetbrains*" -type d)
-$TOOLBOX_DIR/jetbrains-toolbox # Execute
+as-non-root-do $TOOLBOX_DIR/jetbrains-toolbox # Execute
 
-yay -S --noconfirm visual-studio-code-bin 1password
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y # Rust
-
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.0/install.sh | bash
-nvm install 20
-
-# Git
-git config --global user.name "Niclas Kuerschner"
-git config --global user.email "niclas.kuerschner@outlook.com"
-
-# EurKey
-setxkbmap eu
-
-echo "Generating ssh key..."
-ssh-keygen -t ed25519
 
 # Post information
-echo "[1] Add the following key to: https://github.com/settings/keys"
+echo "Add the following key to: https://github.com/settings/keys to be able to continue"
 cat ~/.ssh/id_ed25519.pub
-echo # Empty line
-echo "[2] You can install vim here: https://github.com/NiclasGH/NeoVim-Configurations"
-echo "[3] It is recommended to run the [pull.sh] command after setting the ssh key and pulling the repository"
+
+read -n 1 -p "Confirm with Y to continue installation [Y/N]: " DO_GIT_INSTALL
+if [[ ! $DO_GIT_INSTALL =~ ^[Yy]$ ]] then
+  echo "Finished base installation. Rest of installation was skipped"
+  exit
+fi
+
+# Setup Aliases + Functions
+as-non-root-do git clone git@github.com:NiclasGH/linux-setup.git ~/linux-setup
+as-non-root-do cd ~/linux-setup
+chmod +x pull.sh push.sh
+as-non-root-do ./pull.sh
+
+
+
+echo "Finished Installation - You can delete this script now"
+echo "[1] You can install vim here: https://github.com/NiclasGH/NeoVim-Configurations"
