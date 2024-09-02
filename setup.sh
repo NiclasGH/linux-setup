@@ -57,10 +57,10 @@ fi # TODO ubuntu
 
 # Step 3 ----- Programs & Tools -----
 if [ "$DISTRO" == "arch" ]; then
-	pacman -S --noconfirm --needed obsidian discord flameshot docker docker-compose # steam
+	pacman -S --noconfirm --needed obsidian flameshot docker docker-compose # steam
 	as-non-root-do systemctl docker.socker
 	sudo gpasswd -a $NON_ROOT_USER docker # Allows user to run docker commands without root
-	as-non-root-do yay -S --noconfirm --needed visual-studio-code-bin 1password spotify postman-bin docker-desktop
+	as-non-root-do yay -S --noconfirm --needed visual-studio-code-bin 1password spotify postman-bin docker-desktop vesktop
 
 elif [ "$DISTRO" == "debian" ]; then
 	apt install -y obsidian discord flameshot codium
