@@ -1,5 +1,5 @@
 # Managed by script. 
-# Please keep this in sync using pull.sh before and push aftter making changes
+# Please keep this in sync using pull.sh before and push after making changes
 # Core
 alias ll='ls -alF'
 alias gitm='git commit -m'
