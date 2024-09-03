@@ -1,3 +1,5 @@
+#!/bin/bash
+
 git reset --hard && git pull
 
 if [ -f ~/.bash_aliases ]; then
