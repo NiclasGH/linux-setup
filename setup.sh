@@ -1,33 +1,30 @@
 #!/bin/bash
 
-if [ "$EUID" -ne 0 ]; then
-	echo "Please run as root"
-	exit 1
-fi
-
 # Step 1 ---- Run essentials -----
 if [  -x ./setup_essentials.sh ]; then 
 	./setup_essentials.sh
 fi
 
-NON_ROOT_USER=$(id -un 1000)
-alias as-non-root-do='runuser -u $NON_ROOT_USER -- '
-
 # Step 2 ----- Configuration -----
-as-non-root-do git config --global user.name "Niclas Kürschner"
-as-non-root-do git config --global user.email "niclas.kuerschner@outlook.com"
+git config --global user.name "Niclas Kürschner"
+git config --global user.email "niclas.kuerschner@outlook.com"
 
 echo "Generating ssh key..."
-as-non-root-do ssh-keygen -t ed25519
+ssh-keygen -t ed25519
 
 # Keyboard Layout on kde(This might need manual adjustment)
 if [ $DESKTOP_SESSION -eq "plasma" ]; then
-	as-non-root-do echo "[Layout]" >> ~/.config/kxkbrc
-	as-non-root-do echo "LayoutList=eu" >> ~/.config/kxkbrc
-	as-non-root-do echo "ResetOldOptions=true" >> ~/.config/kxkbrc
-	as-non-root-do echo "Use=true" >> ~/.config/kxkbrc
+	echo "[Layout]" >> ~/.config/kxkbrc
+	echo "LayoutList=eu" >> ~/.config/kxkbrc
+	echo "ResetOldOptions=true" >> ~/.config/kxkbrc
+	echo "Use=true" >> ~/.config/kxkbrc
 fi # TODO ubuntu
 
+wget -O font.zip https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/JetBrainsMono.zip
+unzip font.zip -d fonts
+sudo cp -vf fonts/*.ttf /usr/share/fonts
+rm -r fonts
+rm font.zip
 
 # Step 3 ----- User needs to manually add the SSH key -----
 echo "Add the following key to: https://github.com/settings/keys to be able to continue"
@@ -40,10 +37,12 @@ if [[ ! $DO_GIT_INSTALL =~ ^[Yy]$ ]]; then
 fi
 
 # Step 4 ----- Setup Aliases + Functions -----
-as-non-root-do git clone git@github.com:NiclasGH/linux-setup.git ~/linux-setup
-as-non-root-do cd ~/linux-setup
+git clone git@github.com:NiclasGH/linux-setup.git ~/linux-setup
+cd ~/linux-setup
 chmod +x pull.sh push.sh
-as-non-root-do ./pull.sh
+./pull.sh
+
+git clone git@github.com:NiclasGH/NeoVim-Configurations.git ~/.config/nvim
 
 # End ----------
 echo "Finished Installation - You can delete this script now"

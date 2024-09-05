@@ -21,7 +21,7 @@ alias as-non-root-do='runuser -u $NON_ROOT_USER -- '
 # Step 1 ----- Base Installations -----
 if [ "$DISTRO" == "arch" ]; then
 	pacman -Syu --noconfirm
-	pacman -S --noconfirm --needed base-devel git
+	pacman -S --noconfirm --needed base-devel git gcc ripgrep unzip python-virtualenv
 
   # Programming Languages
   pacman -S --noconfirm --needed jre21-openjdk
@@ -35,6 +35,7 @@ fi
 
 # Rust
 as-non-root-do curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+cargo install tree-sitter-cli cargo-watch cargo-binstall
 
 # Node (NVM)
 as-non-root-do curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.0/install.sh | bash
