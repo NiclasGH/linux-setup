@@ -15,6 +15,11 @@ alias editvim='vim ~/.config/nvim'
 alias tovim='cd ~/.config/nvim'
 alias so='source ~/.bashrc'
 
+# Bash config
+alias editsh='vim ~/.bashrc'
+alias editzsh='vim ~/.zshrc'
+
 # Alias
-alias aliases='cat ~/.bash_aliases'
+alias aliases='cat ~/.bash_aliases && echo && cat ~/.bash_device'
 alias editaliases='vim ~/.bash_aliases'
+alias editdevice='vim ~/.bash_device'
