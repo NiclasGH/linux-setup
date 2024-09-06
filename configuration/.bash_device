@@ -1,4 +1,9 @@
-# Device specific
-alias devdir='TODO'
-alias int='TODO'
-alias rr='TODO' #rustrover
+# Device specific (with defaults)
+alias dev='cd ~/dev'
+alias int='/opt/idea/bin/idea.sh'
+# alias int='/mnt/c/Users/nicla/AppData/Local/Programs/IntelliJ\ IDEA\ Ultimate/bin' Windows
+alias rr='/opt/rust/bin/rustrover.sh' #rustrover
+# alias rr='/mnt/c/Users/nicla/AppData/Local/Programs/RustRover/bin' Windows
+
+alias pull-aliases='~/linux-setup/pull.sh'
+alias push-aliases='~/linux-setup/push.sh'
