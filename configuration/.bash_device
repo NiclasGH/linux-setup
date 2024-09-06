@@ -5,5 +5,8 @@ alias int='/opt/idea/bin/idea.sh'
 alias rr='/opt/rust/bin/rustrover.sh' #rustrover
 # alias rr='/mnt/c/Users/nicla/AppData/Local/Programs/RustRover/bin' Windows
 
+alias tosetup='cd ~/linux-setup'
+alias editsetup='vim ~/linux-setup'
+
 alias pull-aliases='~/linux-setup/pull.sh'
 alias push-aliases='~/linux-setup/push.sh'
