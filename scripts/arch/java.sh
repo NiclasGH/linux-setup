@@ -1,3 +1,3 @@
 #!/bin/bash
 
-sudo pacman -S --no-confirm --needed jdk21-openjdk
+sudo pacman -S --noconfirm --needed jdk21-openjdk

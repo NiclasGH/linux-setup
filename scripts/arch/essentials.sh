@@ -1,3 +1,3 @@
 #!/bin/bash
 
-pacman -S --noconfirm --needed base-devel git unzip
+sudo pacman -S --noconfirm --needed base-devel git unzip
