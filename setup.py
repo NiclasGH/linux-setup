@@ -139,3 +139,4 @@ def ask_for(script_name):
 
 if __name__ == "__main__":
     run_scripts()
+    print("Successfully installed everything!")
