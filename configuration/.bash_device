@@ -1,3 +1,5 @@
+# Managed by script. 
+# Recommended to compare with template regularly
 # Device specific (with defaults)
 alias dev='cd ~/dev'
 alias int='/opt/idea/bin/idea.sh'
