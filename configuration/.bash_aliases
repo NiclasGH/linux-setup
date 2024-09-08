@@ -14,6 +14,7 @@ alias search='ls | grep'
 alias editvim='vim ~/.config/nvim'
 alias tovim='cd ~/.config/nvim'
 alias so='source ~/.bashrc'
+alias soz='source ~/.zshrc'
 
 # Bash config
 alias editsh='vim ~/.bashrc'
