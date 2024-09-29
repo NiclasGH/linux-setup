@@ -1,4 +1,4 @@
 #!/bin/bash
 
 sudo pacman -S zsh
-echo 'source ~/.bashrc' > .zshrc
+echo 'source ~/.bashrc' > ~/.zshrc
