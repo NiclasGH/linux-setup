@@ -3,7 +3,7 @@
 NON_ROOT_USER=$(id -un 1000)
 
 sudo pacman -S --noconfirm --needed obsidian flameshot docker docker-compose
-systemctl docker.socket
+systemctl start docker.socket
 sudo gpasswd -a $NON_ROOT_USER docker # Allows user to run docker commands without root
 
 yay -S --noconfirm --needed visual-studio-code-bin 1password spotify postman-bin docker-desktop vesktop
