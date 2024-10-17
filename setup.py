@@ -7,6 +7,7 @@ class Distro(Enum):
     ARCH = 2
     DEBIAN = 3
 
+# === HELPER ===
 def determine_distro():
     if os.path.isfile('/etc/arch-release'):
         return Distro.ARCH
@@ -15,128 +16,119 @@ def determine_distro():
     else:
         return Distro.UNSUPPORTED
 
+def install(program, path):
+    print(f"Running {program} installation...")
+    subprocess.run(f"./scripts/{path}")
+
+
+def install_distro_dependent(program, path):
+    distro = determine_distro()
+    match distro:
+        case Distro.ARCH:
+            install(program, f"arch/{path}")
+        case Distro.DEBIAN:
+            install(program, f"ubuntu/{path}")
+        case Distro.UNSUPPORTED:
+            print("Unsupported OS. Skipping...")
+
 # START ---- Define scripts -----
-def run_essentials():
-    print("Running essentials scripts...")
-    distro = determine_distro()
-    match distro:
-        case Distro.ARCH:
-            subprocess.run("./scripts/arch/essentials.sh")
-        case Distro.DEBIAN:
-            subprocess.run("./scripts/ubuntu/essentials.sh")
-        case Distro.UNSUPPORTED:
-            print("Unsupported OS. Skipping...")
-            return
-    subprocess.run("./scripts/commons/git_config.sh")
+def install_essentials():
+    install_distro_dependent("Essentials", "essentials.sh")
+    install("Git Config", "commons/git_config.sh")
 
-def run_java():
-    print("Running Java installation...")
-    distro = determine_distro()
-    match distro:
-        case Distro.ARCH:
-            subprocess.run("./scripts/arch/java.sh")
-        case Distro.DEBIAN:
-            subprocess.run("./scripts/ubuntu/java.sh")
-        case Distro.UNSUPPORTED:
-            print("Unsupported OS. Skipping...")
+def install_java():
+    install_distro_dependent("Java", "java.sh")
 
-def run_rust():
-    print("Running Rust installation...")
-    subprocess.run("./scripts/commons/rust.sh")
+def install_rust():
+    install("Rust", "commons/rust.sh")
 
-def run_node():
-    print("Running Node.js installation...")
-    subprocess.run("./scripts/commons/node.sh")
+def install_node():
+    install("Node.js", "commons/node.sh")
 
-def run_ssh_key():
-    print("Running SSH key generation...")
-    subprocess.run("./scripts/commons/ssh_key.sh")
+def install_ssh_key():
+    install("SSH Key", "commons/ssh_key.sh")
 
-def run_nvim():
-    print("Running Neovim installation...")
-    distro = determine_distro()
-    match distro:
-        case Distro.ARCH:
-            subprocess.run("./scripts/arch/nvim_dependencies.sh")
-        case Distro.DEBIAN:
-            subprocess.run("./scripts/ubuntu/nvim_dependencies.sh")
-        case Distro.UNSUPPORTED:
-            print("Unsupported OS. Skipping...")
-            return
+def install_nvim():
+    install_distro_dependent("Neovim", "nvim_dependencies.sh")
     subprocess.run("./scripts/commons/nvim.sh")
 
-def run_programs():
-    print("Running programs installation...")
-    distro = determine_distro()
-    match distro:
-        case Distro.ARCH:
-            subprocess.run("./scripts/arch/programs.sh")
-        case Distro.DEBIAN:
-            subprocess.run("./scripts/ubuntu/programs.sh")
-        case Distro.UNSUPPORTED:
-            print("Unsupported OS. Skipping...")
+def install_discord():
+    install_distro_dependent("Discord", "programs/discord.sh")
 
-def run_aliases():
-    print("Setting up aliases...")
-    subprocess.run("./scripts/commons/aliases.sh")
+def install_docker():
+    install_distro_dependent("Docker", "programs/docker.sh")
 
-def run_gitlab():
-    print("Setting up GitLab...")
-    distro = determine_distro()
-    match distro:
-        case Distro.ARCH:
-            subprocess.run("./scripts/arch/gitlab.sh")
-        case Distro.DEBIAN:
-            subprocess.run("./scripts/ubuntu/gitlab.sh")
-        case Distro.UNSUPPORTED:
-            print("Unsupported OS. Skipping...")
+def install_flameshot():
+    install_distro_dependent("Flameshot", "programs/flameshot.sh")
 
-def run_font():
-    print("Installing fonts...")
-    subprocess.run("./scripts/commons/font.sh")
+def install_obsidian():
+    install_distro_dependent("Obsidian", "programs/obsidian.sh")
 
-def run_kde_eurokey():
-    print("Setting up KDE euro key...")
-    subprocess.run("./scripts/commons/kde_eurokey.sh")
+def install_password():
+    install_distro_dependent("1Password", "programs/password.sh")
 
-def run_zsh():
-    print("Setting up zsh...")
-    distro = determine_distro()
-    match distro:
-        case Distro.ARCH:
-            subprocess.run("./scripts/arch/zsh.sh")
-        case Distro.DEBIAN:
-            subprocess.run("./scripts/ubuntu/zsh.sh")
-        case Distro.UNSUPPORTED:
-            print("Unsupported OS. Skipping...")
-            return
+def install_postman():
+    install_distro_dependent("Postman", "programs/postman.sh")
+
+def install_spotify():
+    install_distro_dependent("Spotify", "programs/spotify.sh")
+
+def install_toolbox():
+    install("Toolbox", "commons/toolbox.sh")
+
+def install_vscode():
+    install_distro_dependent("VSCode", "programs/vscode.sh")
+
+def install_aliases():
+    install("Aliases", "commons/aliases.sh")
+
+def install_gitlab():
+    install_distro_dependent("GitLab CLI", "gitlab.sh")
+
+def install_font():
+    install("Fonts", "commons/font.sh")
+
+def install_kde_eurokey():
+    install("KDE Eurkey", "commons/kde_eurokey.sh")
+
+def install_zsh():
+    install_distro_dependent("ZSH", "zsh.sh")
     subprocess.run("./scripts/commons/zsh_configuration.sh")
+
 # END ---- Define scripts -----
 
 scripts = {
-    "essentials": run_essentials,
-    "java": run_java,
-    "rust": run_rust,
-    "node": run_node,
-    "ssh_key": run_ssh_key,
-    "nvim": run_nvim,
-    "programs": run_programs,
-    "aliases": run_aliases,
-    "gitlab": run_gitlab,
-    "font": run_font,
-    "kde_eurokey": run_kde_eurokey,
-    "zsh": run_zsh,
+    "essentials": install_essentials,
+    "java": install_java,
+    "rust": install_rust,
+    "node": install_node,
+    "ssh_key": install_ssh_key,
+    "nvim": install_nvim,
+    "discord": install_discord,
+    "docker": install_docker,
+    "flameshot": install_flameshot,
+    "obsidian": install_obsidian,
+    "1password": install_password,
+    "postman": install_postman,
+    "spotify": install_spotify,
+    "toolbox": install_toolbox,
+    "vscode": install_vscode,
+    "aliases": install_aliases,
+    "gitlab": install_gitlab,
+    "font": install_font,
+    "kde_eurokey": install_kde_eurokey,
+    "zsh": install_zsh,
 }
 
-def run_scripts():
+def install_scripts():
     for script_name in scripts:
-        if ask_for(script_name):
+        if asks_for(script_name):
             scripts[script_name]()  # Run the script function
 
-def ask_for(script_name):
+def asks_for(script_name):
     answer = input(f"Install {script_name}? [Y/N]: ").strip().lower()
     return answer == 'y'
 
 if __name__ == "__main__":
-    run_scripts()
+    install_scripts()
     print("Successfully installed everything!")
