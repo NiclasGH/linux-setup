@@ -10,3 +10,6 @@ ssh-keygen -t ed25519
 
 echo "Add the following key to: https://github.com/settings/keys to be able to continue"
 cat /home/$NON_ROOT_USER/.ssh/id_ed25519.pub
+
+read -p "Press enter to continue"
+git clone git@github.com:NiclasGH/linux-setup.git ~/linux-setup
