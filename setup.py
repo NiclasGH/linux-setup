@@ -7,11 +7,6 @@ class Distro(Enum):
     ARCH = 2
     DEBIAN = 3
 
-class EurKeyDesktopEnvironment(Enum):
-    UNSUPPORTED = 1
-    KDE = 2
-    GNOME = 3
-
 # === HELPER ===
 def determine_distro():
     if os.path.isfile('/etc/arch-release'):
@@ -93,8 +88,15 @@ def install_gitlab():
 def install_font():
     install("Fonts", "commons/font.sh")
 
-def install_kde_eurokey():
-    install("KDE Eurkey", "commons/kde_eurokey.sh")
+def install_eurokey():
+    de = os.environ["DESKTOP_SESSION"]
+    match de:
+        case "plasma":
+            install("KDE EurKey", "commons/kde_eurkey.sh")
+        case "gnome":
+            install("Gnome EurKey", "commons/gnome_eurkey.sh")
+        case _:
+            print("Unsupported OS. Skipping...")
 
 def install_zsh():
     install_distro_dependent("ZSH", "zsh.sh")
@@ -121,7 +123,7 @@ scripts = {
     "aliases": install_aliases,
     "gitlab": install_gitlab,
     "font": install_font,
-    "kde_eurokey": install_kde_eurokey,
+    "eurokey": install_eurokey,
     "zsh": install_zsh,
 }
 
@@ -129,6 +131,7 @@ def install_scripts():
     for script_name in scripts:
         if asks_for(script_name):
             scripts[script_name]()  # Run the script function
+            print(f"Successfully installed {script_name}")
 
 def asks_for(script_name):
     answer = input(f"Install {script_name}? [Y/N]: ").strip().lower()
