@@ -7,6 +7,11 @@ class Distro(Enum):
     ARCH = 2
     DEBIAN = 3
 
+class EurKeyDesktopEnvironment(Enum):
+    UNSUPPORTED = 1
+    KDE = 2
+    GNOME = 3
+
 # === HELPER ===
 def determine_distro():
     if os.path.isfile('/etc/arch-release'):
