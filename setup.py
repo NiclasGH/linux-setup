@@ -79,9 +79,6 @@ def install_toolbox():
 def install_vscode():
     install_distro_dependent("VSCode", "programs/vscode.sh")
 
-def install_aliases():
-    install("Aliases", "commons/aliases.sh")
-
 def install_gitlab():
     install_distro_dependent("GitLab CLI", "gitlab.sh")
 
@@ -123,7 +120,6 @@ scripts = {
     "spotify": install_spotify,
     "toolbox": install_toolbox,
     "vscode": install_vscode,
-    "aliases": install_aliases,
     "gitlab": install_gitlab,
     "font": install_font,
     "eurokey": install_eurokey,
