@@ -17,3 +17,4 @@ if [ -f ~/.bash_functions ]; then
 fi
 cp ./configuration/.bash_functions ~/.bash_functions
 
+echo "Pulled aliases!"

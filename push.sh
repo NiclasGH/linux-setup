@@ -18,5 +18,7 @@ if [ -f ~/.bash_functions ]; then
 fi
 
 git add .
-git commit -m "Alias and Function update"
+git commit -m "[script] aliases update"
 git push
+
+echo "Pushed aliases"
