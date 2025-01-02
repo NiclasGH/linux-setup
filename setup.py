@@ -27,7 +27,7 @@ def install_distro_dependent(program, path):
         case Distro.ARCH:
             install(program, f"arch/{path}")
         case Distro.DEBIAN:
-            install(program, f"ubuntu/{path}")
+            install(program, f"debian/{path}")
         case Distro.UNSUPPORTED:
             print("Unsupported OS. Skipping...")
 
@@ -49,8 +49,8 @@ def install_ssh_key():
     install("SSH Key", "commons/ssh_key.sh")
 
 def install_nvim():
-    install_distro_dependent("Neovim", "nvim_dependencies.sh")
-    subprocess.run("./scripts/commons/nvim.sh")
+    install_distro_dependent("Nvim Installation", "nvim_dependencies.sh")
+    install("Nvim Configuration", "commons/nvim.sh")
 
 def install_discord():
     install_distro_dependent("Discord", "programs/discord.sh")
@@ -99,8 +99,11 @@ def install_eurokey():
             print("Unsupported OS. Skipping...")
 
 def install_zsh():
-    install_distro_dependent("ZSH", "zsh.sh")
-    subprocess.run("./scripts/commons/zsh_configuration.sh")
+    install_distro_dependent("ZSH Installation", "zsh.sh")
+    install("ZSH Configuration", "commons/zsh_configuration.sh")
+
+def install_trivy():
+    install("Trivy", "commons/trivy.sh")
 
 # END ---- Define scripts -----
 
@@ -125,6 +128,7 @@ scripts = {
     "font": install_font,
     "eurokey": install_eurokey,
     "zsh": install_zsh,
+    "trivy": install_trivy,
 }
 
 def install_scripts():

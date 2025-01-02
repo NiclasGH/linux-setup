@@ -1,6 +1,10 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-git reset --hard
+if [[ `git status --porcelain` ]]; then
+  echo "There are changes. Please review and commit them before pushing"
+  exit 1
+fi
+
 git pull
 
 if [ -f ~/.bash_aliases ]; then
