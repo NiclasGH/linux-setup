@@ -9,11 +9,20 @@ class Distro(Enum):
 
 # === HELPER ===
 def determine_distro():
-    if os.path.isfile('/etc/arch-release'):
-        return Distro.ARCH
-    elif os.path.isfile('/etc/lsb-release'):
-        return Distro.DEBIAN
-    else:
+    if not os.path.isfile('/etc/os-release'):
+        return Distro.UNSUPPORTED
+        
+    try:
+        with open('/etc/os-release', 'r') as f:
+            os_release = f.read().lower()
+            
+        if 'arch' in os_release:
+            return Distro.ARCH
+        elif 'debian' in os_release or 'ubuntu' in os_release:
+            return Distro.DEBIAN
+        else:
+            return Distro.UNSUPPORTED
+    except OSError:
         return Distro.UNSUPPORTED
 
 def install(program, path):
