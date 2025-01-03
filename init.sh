@@ -5,6 +5,13 @@ if [ "$USER" = "root" ] ; then
 	exit 1
 fi
 
+if ! command -v git 2>&1 >/dev/null
+then
+    	echo "Git is not installed"
+    	exit 1
+fi
+
+
 DIRECTORY = "linux-setup"
 
 git config --global user.name "Niclas Kürschner"
