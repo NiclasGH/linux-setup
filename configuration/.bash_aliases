@@ -14,8 +14,9 @@ alias search='ls | grep'
 alias editvim='vim ~/.config/nvim'
 alias tovim='cd ~/.config/nvim'
 alias so='source ~/.bashrc'
-alias soz='source ~/.zshrc'
+
 alias kc='kubectl'
+complete -o default -F __start_kubectl kc
 
 # Bash config
 alias editsh='vim ~/.bashrc'

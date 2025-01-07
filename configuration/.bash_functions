@@ -1,3 +1,4 @@
+
 # Managed by script. 
 # Please keep this in sync using pull.sh before and push after making changes
 
@@ -38,12 +39,3 @@ function cwt() {
 		cargo watch -q -c -x "test -- --nocapture"
 	fi
 }
-
-function mass-pull() {
-	for dir in ./*
-	do
-		git -C $dir reset --hard
-		git -C $dir pull --rebase
-	done
-}
-
