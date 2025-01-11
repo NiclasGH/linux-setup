@@ -1,4 +1,4 @@
 #!/bin/bash
 
-sudo apt-get install -y codium
+snap install codium --classic
 
