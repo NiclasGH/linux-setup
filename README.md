@@ -7,4 +7,4 @@ This is a repository for a quick setup of linux and managing of common configura
 * script.py: This is a larger aggregation of scripts. With this python you can customize what you need installed. This includes programming languages but also normal applications.
 
 ## Requirements
-You need python to be able to run the setup.py script. If you are running a debian based distro, you're also expected to have snap installed. To install snap there is a scipt under manual_scripts/ 
+You need python to be able to run the setup.py script.

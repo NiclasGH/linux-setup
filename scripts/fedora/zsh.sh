@@ -1,4 +1,3 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-sudo pacman -S zsh
-echo 'source ~/.bashrc' > ~/.zshrc
+sudo dnf install -y zsh

@@ -1,3 +1,3 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-sudo pacman -S --noconfirm --needed jdk21-openjdk
+sudo dnf install -y java-21-openjdk.x86_64

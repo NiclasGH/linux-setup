@@ -1,3 +1,3 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-sudo pacman -S --noconfirm --needed glab
+sudo dnf install -y glab

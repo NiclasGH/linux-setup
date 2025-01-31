@@ -3,6 +3,8 @@
 chsh -s $(which zsh)
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
+echo 'source ~/.bashrc' > ~/.zshrc
+
 tee -a ~/.zshrc << END
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases

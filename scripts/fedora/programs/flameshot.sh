@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-sudo pacman -S --noconfirm --needed flameshot
+sudo dnf install -y flameshot
 

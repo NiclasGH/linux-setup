@@ -15,5 +15,5 @@ echo \
   sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 sudo apt-get update
 
-systemctl docker.socket
+systemctl enable docker.socket
 sudo gpasswd -a $NON_ROOT_USER docker

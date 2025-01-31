@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-yay -S --noconfirm --needed vesktop
+flatpak install -y flathub dev.vencord.Vesktop
 

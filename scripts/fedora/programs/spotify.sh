@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-yay -S --noconfirm --needed spotify
+flatpak install flathub com.spotify.Client
 
