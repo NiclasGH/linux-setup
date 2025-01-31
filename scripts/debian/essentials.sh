@@ -1,3 +1,3 @@
 #!/bin/bash
 
-sudo apt-get install -y build-essential git unzip
+sudo apt-get install -y build-essential git unzip snapd
