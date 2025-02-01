@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
 
-yay -S --noconfirm --needed postman-bin
+sudo dnf install -y snapd
+snap install postman
 

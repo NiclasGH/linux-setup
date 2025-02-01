@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
-sudo pacman -S --noconfirm --needed obsidian
+flatpak install flathub md.obsidian.Obsidian
 
