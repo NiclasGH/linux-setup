@@ -1,11 +1,13 @@
 import subprocess
 import os
+import warnings
 from enum import Enum
 
 class Distro(Enum):
     UNSUPPORTED = 1
     ARCH = 2
     DEBIAN = 3
+    FEDORA = 4
 
 # === HELPER ===
 def determine_distro():
@@ -20,7 +22,10 @@ def determine_distro():
             return Distro.ARCH
         elif 'debian' in os_release or 'ubuntu' in os_release:
             return Distro.DEBIAN
+        elif 'fedora' in os_release:
+            return Distro.FEDORA
         else:
+            warnings.warn("You're using an unsupported OS. Most installations will not work")
             return Distro.UNSUPPORTED
     except OSError:
         return Distro.UNSUPPORTED
@@ -37,6 +42,8 @@ def install_distro_dependent(program, path):
             install(program, f"arch/{path}")
         case Distro.DEBIAN:
             install(program, f"debian/{path}")
+        case Distro.FEDORA:
+            install(program, f"fedora/{path}")
         case Distro.UNSUPPORTED:
             print("Unsupported OS. Skipping...")
 
