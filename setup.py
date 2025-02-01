@@ -118,6 +118,9 @@ def install_zsh():
 def install_trivy():
     install("Trivy", "commons/trivy.sh")
 
+def install_rclone():
+    install("Trivy", "commons/trivy.sh")
+
 # END ---- Define scripts -----
 
 scripts = {
@@ -141,6 +144,7 @@ scripts = {
     "eurokey": install_eurokey,
     "zsh": install_zsh,
     "trivy": install_trivy,
+    "rclone": install_rclone,
 }
 
 def install_scripts():
