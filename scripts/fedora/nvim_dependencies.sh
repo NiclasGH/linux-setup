@@ -1,4 +1,3 @@
 #!/usr/bin/env bash
 
-sudo pacman -S --noconfirm --needed gcc repgrep python-virtualenv xclip neovim
-cargo install tree-sitter-cli
+sudo dnf install -y gcc ripgrep python3-virtualenv xclip neovim tree-sitter-cli
