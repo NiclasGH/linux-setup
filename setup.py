@@ -119,32 +119,37 @@ def install_trivy():
     install("Trivy", "commons/trivy.sh")
 
 def install_rclone():
-    install("Trivy", "commons/trivy.sh")
+    install_distro_dependent("Rclone", "rclone.sh")
+
+def install_kube():
+    install("Kubectl", "commons/kubectl.sh")
+    install_distro_dependent("Helm", "helm.sh")
 
 # END ---- Define scripts -----
 
 scripts = {
-    "essentials": install_essentials,
-    "java": install_java,
-    "rust": install_rust,
-    "node": install_node,
+    "Essentials": install_essentials,
+    "Java 21": install_java,
+    "Rust": install_rust,
+    "Node": install_node,
     "ssh_key": install_ssh_key,
     "nvim": install_nvim,
-    "discord": install_discord,
-    "docker": install_docker,
-    "flameshot": install_flameshot,
-    "obsidian": install_obsidian,
-    "1password": install_password,
-    "postman": install_postman,
-    "spotify": install_spotify,
-    "toolbox": install_toolbox,
-    "vscode": install_vscode,
-    "gitlab": install_gitlab,
-    "font": install_font,
-    "eurokey": install_eurokey,
+    "Discord": install_discord,
+    "Docker": install_docker,
+    "Flameshot": install_flameshot,
+    "Obsidian": install_obsidian,
+    "1Password": install_password,
+    "Postman": install_postman,
+    "Spotify": install_spotify,
+    "Toolbox": install_toolbox,
+    "VsCode": install_vscode,
+    "Gitlab CLI": install_gitlab,
+    "Font": install_font,
+    "Eurokey": install_eurokey,
     "zsh": install_zsh,
-    "trivy": install_trivy,
-    "rclone": install_rclone,
+    "Trivy": install_trivy,
+    "Rclone": install_rclone,
+    "Kube Stack (Kubectl + Helm)": install_kube
 }
 
 def install_scripts():

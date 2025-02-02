@@ -9,4 +9,5 @@ Install the [firefox extension](https://addons.mozilla.org/en-US/firefox/addon/g
 
 * [Caffeine](https://extensions.gnome.org/extension/517/caffeine/): Not going to sleep when playing games
 
-
+## Terminal
+Set the default terminal font to jetbrains mono
