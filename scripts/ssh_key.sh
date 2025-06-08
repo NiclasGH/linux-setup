@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 NON_ROOT_USER=$(id -un 1000)
 

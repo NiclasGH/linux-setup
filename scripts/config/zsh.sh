@@ -1,7 +1,9 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+sudo dnf install -y zsh
 
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-chsh -s $(which zsh)
+exec chsh -s $(which zsh)
 
 echo 'source ~/.bash_device' >> ~/.zshrc
 echo 'source ~/.bash_aliases' >> ~/.zshrc
