@@ -16,7 +16,6 @@ scripts = {
     "nvim": lambda: install("nvim"),
     "Discord": lambda: install("programs/discord"),
     "Docker": lambda: install("programs/docker"),
-    "Flameshot": lambda: install("programs/flameshot"),
     "Obsidian": lambda: install("programs/obsidian"),
     "1Password": lambda: install("programs/password"),
     "Postman": lambda: install("programs/postman"),
@@ -25,7 +24,7 @@ scripts = {
     "VsCode": lambda: install("programs/vscode"),
     "Gitlab CLI": lambda: install("gitlab"),
     "Font": lambda: install("config/font"),
-    "Eurokey": lambda: install("config/eurkey"),
+    "Gnome Config": lambda: install("config/gnome"),
     "Trivy": lambda: install("trivy"),
     "Rclone": lambda: install("rclone"),
     "Kube Stack (Kubectl + Helm)": lambda: install("kube")
