@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-sudo dnf install -y steam gamemode mangohud
+sudo dnf install -y steam gamemode mangohud protontricks
