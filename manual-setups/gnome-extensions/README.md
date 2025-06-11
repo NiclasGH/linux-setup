@@ -10,11 +10,3 @@ Install the [firefox extension](https://addons.mozilla.org/en-US/firefox/addon/g
 * [Fullscreen Avoider](https://extensions.gnome.org/extension/4362/fullscreen-avoider/) Move top bar to second screen when gaming
 * PaperVM - TODO
 
-## General Settings
-- Change the keybindings (Super Key for window controlling: Ctrl for Desktops, Shift for Application). So Super+Ctrl+Right would shift a Desktop to the right, while Super+Shift+Ctrl+Right would move an Application a Desktop to the right
-- Change the monitor hz rate
-- Disable hot corner
-
-## Terminal
-1. Set the default terminal font to jetbrains mono
-2. Set a shortcut in gnome setting with command `ptyxis --new-window` which opens a new terminal window
