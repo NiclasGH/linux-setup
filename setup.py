@@ -26,10 +26,10 @@ scripts = {
     "Gitlab CLI": lambda: install("gitlab"),
     "Font": lambda: install("config/font"),
     "Eurokey": lambda: install("config/eurkey"),
-    "zsh": lambda: install("config/zsh"),
     "Trivy": lambda: install("trivy"),
     "Rclone": lambda: install("rclone"),
     "Kube Stack (Kubectl + Helm)": lambda: install("kube")
+    "zsh": lambda: install("config/zsh"),
 }
 
 def install_scripts():
