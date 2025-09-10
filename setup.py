@@ -43,4 +43,4 @@ def asks_for(script_name):
 
 if __name__ == "__main__":
     install_scripts()
-    print("Successfully installed everything!")
+    print("Successfully installed everything! Consider checking out the manual setups and scripts")
