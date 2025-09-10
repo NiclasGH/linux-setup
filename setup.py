@@ -15,6 +15,7 @@ scripts = {
     "ssh_key": lambda: install("ssh_key"),
     "nvim": lambda: install("nvim"),
     "Discord": lambda: install("programs/discord"),
+    "EasyEffects (EQ)": lambda: install("programs/easyeffects"),
     "Docker": lambda: install("programs/docker"),
     "Obsidian": lambda: install("programs/obsidian"),
     "1Password": lambda: install("programs/password"),
