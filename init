@@ -25,7 +25,7 @@ git clone git@github.com:NiclasGH/linux-setup.git ~/linux-setup
 
 # Initalize aliases
 git clone git@github.com:NiclasGH/shell-configuration.git ~/shell-configuration
-(cd ~/shell-configuration; ./init.sh)
+(cd ~/shell-configuration; ./init)
 echo "Aliases successfully configured"
 
 echo ; echo "Initialization successful!"
