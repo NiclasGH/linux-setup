@@ -3,7 +3,6 @@ Install the [firefox extension](https://addons.mozilla.org/en-US/firefox/addon/g
 
 * [Caffeine](https://extensions.gnome.org/extension/517/caffeine/): Not going to sleep when playing games
 * [Quick Settings Audio Panel](https://extensions.gnome.org/extension/5940/quick-settings-audio-panel/): Adjusting per-program audio through the quick access menu
-* [Quick Web Search](https://extensions.gnome.org/extension/6051/quick-web-search/): Being able to perform search engine searches through the gnome search bar
 * [Vitals](https://extensions.gnome.org/extension/1460/vitals/): System temp and usage
 * [Blur my Shell](https://extensions.gnome.org/extension/3193/blur-my-shell/) Just a nicer look for gnome overall
 * [Clipboard History](https://extensions.gnome.org/extension/4839/clipboard-history/) Clipboard History, available with Shift+Super+V

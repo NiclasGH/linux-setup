@@ -7,7 +7,7 @@ def install(path):
 scripts = {
     "Essentials": lambda: install("config/essentials"),
     "Git Config": lambda: install("git_config"),
-    "Gaming": lambda: install("gaming"),
+    "Gaming": lambda: install("programs/gaming"),
     "Brave Browser": lambda: install("programs/brave"),
     "Java 21": lambda: install("java"),
     "Rust": lambda: install("rust"),
@@ -28,8 +28,8 @@ scripts = {
     "Gnome Config": lambda: install("config/gnome"),
     "Trivy": lambda: install("trivy"),
     "Rclone": lambda: install("rclone"),
-    "Kube Stack (Kubectl + Helm)": lambda: install("kube")
-    "zsh": lambda: install("config/zsh"),
+    "Kube Stack (Kubectl + Helm)": lambda: install("kube"),
+    "zsh": lambda: install("config/zsh")
 }
 
 def install_scripts():

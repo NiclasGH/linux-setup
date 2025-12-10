@@ -14,6 +14,7 @@ rm docker.rpm
 DIVE_VERSION=$(curl -sL "https://api.github.com/repos/wagoodman/dive/releases/latest" | grep '"tag_name":' | sed -E 's/.*"v([^"]+)".*/\1/')
 curl -fOL "https://github.com/wagoodman/dive/releases/download/v${DIVE_VERSION}/dive_${DIVE_VERSION}_linux_amd64.rpm"
 sudo dnf install -y ./dive_${DIVE_VERSION}_linux_amd64.rpm
+rm ./dive_${DIVE_VERSION}_linux_amd64.rpm
 
 systemctl enable docker.socket # Start docker engine at startup
 sudo gpasswd -a $NON_ROOT_USER docker # Allows non-root to use docker

@@ -1,8 +1,3 @@
-if [ -n "$ZSH" ] ; then
-	echo "This script needs to be run from a zsh context"
-	exit 1
-fi
-
 # Deactivate current plguin config
 sed -i 's/plugins=(g/# plugins=(g/g' ~/.zshrc
 
