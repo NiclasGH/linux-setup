@@ -6,3 +6,4 @@ git config --global pull.rebase true
 git config --global core.autocrlf false
 git config --global core.editor "nvim"
 git config --global push.autoSetupRemote true
+git config --global init.defaultBranch main
