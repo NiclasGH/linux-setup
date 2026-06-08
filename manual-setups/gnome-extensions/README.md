@@ -10,3 +10,4 @@ Install the [firefox extension](https://addons.mozilla.org/en-US/firefox/addon/g
 * [ddterm](https://extensions.gnome.org/extension/3780/ddterm/) Togglebar terminal with F12. Should remap new tab key from Ctrl+Shift+N to Ctrl+Shift+T
 * PaperVM - TODO
 
+Note: Just `cat` this file and Ctrl+Click on the links

@@ -5,9 +5,7 @@ def install(name):
     subprocess.run(f"./scripts/{name}.sh")
 
 scripts = [
-    ("Git Config", "git_config"),
     ("Trivy", "trivy"),
-    ("Toolbox", "toolbox"),
     ("EasyEffects (EQ)", "easyeffects"),
     ("Rclone", "rclone"),
 ]
