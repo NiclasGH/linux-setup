@@ -1,0 +1,17 @@
+[Unit]
+Description=Mount Homeserver using Rclone
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=notify
+ExecStart=/usr/bin/rclone mount TiramisuFilebrowser-dav: /home/niclas/media/tiramisu \
+    --vfs-cache-mode writes \
+    --log-level INFO \
+    --dir-cache-time 5s
+ExecStop=/bin/fusermount3 -u /home/niclas/media/tiramisu
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=default.target
